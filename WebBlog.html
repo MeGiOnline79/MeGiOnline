@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Me.Gi Agenzia - Web Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .delay-1 { animation-delay: 0.3s; }
+
+/* Reset margini di base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo del sito che occupa tutto lo schermo */
+body, html {
+  height: 100%;
+}
+
+/* Wrapper principale della pagina */
+main {
+  min-height: calc(100vh - 200px); /* Regola in base all’altezza del tuo footer */
+}
+
+/* Footer */
+footer {
+  background-color: #214d50;
+  color: white;
+  width: 100vw;
+  padding: 40px 40px;
+  box-sizing: border-box;
+  position: relative; /* oppure fixed se vuoi che rimanga fisso in fondo */
+  bottom: 0;
+}
+    .footer-links a:hover {
+      color: #68d391;
+    }
+
+    header {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .header-hidden {
+      transform: translateY(-100%);
+      box-shadow: none !important;
+    }
+      html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.8rem;
+            color: #4a5568;
+            background: rgba(255,255,255,0.7);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            color: #e53e3e;
+        }
+
+        .popup-content h2 {
+            color: #2c5282;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #4299e1;
+            padding-bottom: 0.5rem;
+        }
+
+        .popup-content p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-image {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .popup-footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .read-more {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+        }
+
+        /* Scrollbar styling */
+        .popup-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .popup-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb {
+            background: #4299e1;
+            border-radius: 10px;
+        }
+
+        .popup-content::-webkit-scrollbar-thumb:hover {
+            background: #3182ce;
+        }
+    </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.querySelector("header");
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function onScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          header.classList.add("header-hidden");
+        } else {
+          header.classList.remove("header-hidden");
+        }
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      });
+    });
+  </script>
+</head>
+
+<body class="min-h-screen flex flex-col m-0 p-0">
+  <!-- Header -->
+  <header class="shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex flex-col items-center">
+      <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-20 h-20 rounded-full mb-2" />
+      <nav class="flex space-x-8 text-sm md:text-base">
+        <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Home</a>
+        <a href="chisiamo.html" class="text-gray-700 hover:text-teal-700 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-gray-700 hover:text-teal-700 transition">Servizi</a>
+        <a href="Aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-teal-700 font-medium hover:text-green-400 transition">Blog</a>
+        <a href="contatti.html" class="text-gray-700 hover:text-teal-700 transition">Contatti</a>
+                    <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+      </nav>
+    </div>
+  </header>
+
+<!-- Contenuto principale -->
+ <main class="flex-grow">
+<main class="mt-40 mb-20 px-6">
+  <div class="text-center mb-12 fade-in">
+    <h1 class="text-4xl font-bold text-teal-700 mb-4">Il Nostro Blog</h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Leggi gli aggiornamenti, consigli e novità dal mondo della consulenza e della digitalizzazione aziendale.</p>
+  </div>
+
+  <body class="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Post 1 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-home"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">GPL per la casa: tutto ciò che devi sapere</h2>
+            <p class="text-gray-600 text-sm mb-4">Una guida completa sui vantaggi del GPL per uso domestico, dalla sicurezza all'efficienza energetica.</p>
+            <a href="#" onclick="openPopup('popup1')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">Il futuro del GPL: una risorsa energetica bio e rinnovabile</h2>
+            <p class="text-gray-600 text-sm mb-4">Scopri come il Bio GPL possa contribuire alla sostenibilità e alla riduzione delle emissioni.</p>
+            <a href="#" onclick="openPopup('popup2')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">Riempimento serbatoi GPL: diffida degli operatori poco professionali</h2>
+            <p class="text-gray-600 text-sm mb-4">Importanza di affidarsi a professionisti qualificati per la sicurezza nel rifornimento GPL.</p>
+            <a href="#" onclick="openPopup('popup3')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-recycle"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">Liquigas e Contarina: un progetto di economia circolare</h2>
+            <p class="text-gray-600 text-sm mb-4">Collaborazione per produrre biometano dai rifiuti organici, promuovendo l'energia sostenibile.</p>
+            <a href="#" onclick="openPopup('popup4')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-balance-scale"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">GPL e gas naturale: differenze e punti in comune</h2>
+            <p class="text-gray-600 text-sm mb-4">Confronto tra GPL e gas naturale su costi, caratteristiche e impatto ambientale.</p>
+            <a href="#" onclick="openPopup('popup5')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
+            <div class="text-5xl text-teal-600 mb-4">
+                <i class="fas fa-fire"></i>
+            </div>
+            <h2 class="text-xl font-bold text-teal-700 mb-2">Riscaldamento con GPL: un'alternativa ecologica ed efficiente</h2>
+            <p class="text-gray-600 text-sm mb-4">Scopri come il GPL possa essere una soluzione efficiente e a basso impatto ambientale per il riscaldamento domestico.</p>
+            <a href="#" onclick="openPopup('popup6')" class="text-teal-600 font-medium hover:text-green-500 transition read-more">Leggi di più →</a>
+        </article>
+    </div>
+
+    <!-- Popup per Post 1 -->
+    <div id="popup1" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup1')">&times;</span>
+            <h2>GPL per la casa: tutto ciò che devi sapere</h2>
+            <img src="img/gascasa.jpg" alt="Moderno impianto GPL domestico con serbatoio argentato e tubazioni blu in un ambiente pulito" class="popup-image">
+            <p>Il GPL (Gas di Petrolio Liquefatto) rappresenta una soluzione energetica versatile ed efficiente per uso domestico. Composto principalmente da propano e butano, offre numerosi vantaggi rispetto ad altre fonti energetiche.</p>
+            <p>Tra i principali benefici: elevato potere calorifico, ridotte emissioni inquinanti, autonomia energetica e flessibilità di installazione anche in zone non raggiunte dalla rete del metano.</p>
+            <p>Dal punto di vista della sicurezza, gli impianti moderni sono dotati di sistemi di controllo avanzati che monitorano costantemente pressione e possibili fughe di gas, garantendo una protezione ottimale.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup1')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup per Post 2 -->
+    <div id="popup2" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup2')">&times;</span>
+            <h2>Il futuro del GPL: una risorsa energetica bio e rinnovabile</h2>
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b3c3e04d-dda7-43b7-91b0-66e99f9c1302.png" alt="Campo di colza dorata al tramonto, simbolo delle materie prime per il BioGPL" class="popup-image">
+            <p>Il settore del GPL sta vivendo una rivoluzione verde con l'introduzione del BioGPL, prodotto da fonti rinnovabili come oli vegetali e scarti agricoli.</p>
+            <p>Questa innovazione può ridurre le emissioni fino al 80% rispetto al GPL tradizionale, mantenendo però le stesse prestazioni energetiche e la compatibilità con gli impianti esistenti.</p>
+            <p>Diversi paesi europei stanno già sperimentando miscele progressive che puntano a raggiungere il 100% di componenti rinnovabili entro il 2030, ponendo il GPL al centro della transizione ecologica.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup2')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup per Post 3 -->
+    <div id="popup3" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup3')">&times;</span>
+            <h2>Riempimento serbatoi GPL: diffida degli operatori poco professionali</h2>
+            <img src="img/rifornimenti.jpg" alt="Tecnico qualificato che effettua il rifornimento di un serbatoio GPL con attrezzature certificate" class="popup-image">
+            <p>Il rifornimento del GPL è un'operazione che richiede personale specializzato e attrezzature certificate. Purtroppo, sul mercato operano anche soggetti non qualificati che offrono servizi a prezzi molto bassi, ma con gravi rischi per la sicurezza.</p>
+            <p>Tra le pratiche scorrette più comuni: utilizzo di bomboloni non omologati, mancato controllo della tenuta dell'impianto, riempimento eccessivo del serbatoio e mancanza di documentazione di tracciabilità.</p>
+            <p>Consigliamo sempre di rivolgersi a distributori autorizzati e di verificare che gli operatori siano in possesso dei necessari patentini e certificazioni.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup3')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup per Post 4 -->
+    <div id="popup4" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup4')">&times;</span>
+            <h2>Liquigas e Contarina: un progetto di economia circolare</h2>
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e7d3c3d9-f5d4-4819-88a0-deffa6e28c93.png" alt="Diagramma di economia circolare con frecce che mostrano il ciclo dei rifiuti organici trasformati in energia" class="popup-image">
+            <p>La partnership tra Liquigas e Contarina rappresenta un esempio virtuoso di economia circolare applicata al settore energetico.</p>
+            <p>Il progetto trasforma i rifiuti organici raccolti dalla municipalizzata in biometano, che viene poi distribuito attraverso la rete di Liquigas. Questa sinergia permette di valorizzare gli scarti, ridurre l'impatto ambientale e produrre energia rinnovabile.</p>
+            <p>Secondo le stime, ogni tonnellata di rifiuti organici trattati può produrre fino a 120 metri cubi di biometano, sufficienti a riscaldare un appartamento medio per circa un mese.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup4')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup per Post 5 -->
+    <div id="popup5" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup5')">&times;</span>
+            <h2>GPL e gas naturale: differenze e punti in comune</h2>
+            <img src="img/gasnaturale.jpg" alt="Grafico comparativo che mostra le differenze tra GPL e gas naturale in termini di efficienza e emissioni" class="popup-image">
+            <p>Sebbene entrambi siano combustibili fossili, GPL e gas naturale presentano differenze sostanziali:</p>
+            <ul class="list-disc pl-5 mb-4 space-y-2">
+                <li>Il GPL ha un potere calorifico superiore (circa 2,5 volte quello del metano)</li>
+                <li>Può essere stoccato in bombole o serbatoi, senza bisogno di allacciamento alla rete</li>
+                <li>Produce meno CO2 per unità di energia rispetto al metano</li>
+                <li>È più adatto per utilizzi in zone non metanizzate</li>
+            </ul>
+            <p>Nonostante queste differenze, entrambi stanno evolvendo verso soluzioni più sostenibili con l'introduzione di versioni bio e rinnovabili.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup5')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup per Post 6 -->
+    <div id="popup6" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup('popup6')">&times;</span>
+            <img src="img/GPL.png" alt="Moderno impianto di riscaldamento a GPL in una villa con pannelli solari integrati" class="popup-image">
+            <p>I sistemi di riscaldamento a GPL rappresentano una valida alternativa ai tradizionali impianti a gasolio o elettrici, soprattutto in aree rurali e zone non metanizzate.</p>
+            <p>I moderni generatori di calore a condensazione abbinati a serbatoi GPL possono raggiungere rendimenti superiori al 90%, con significativi risparmi in bolletta rispetto ad altre soluzioni.</p>
+            <p>Particolarmente interessante la possibilità di integrare il GPL con fonti rinnovabili, creando impianti ibridi che sfruttano al meglio le caratteristiche di ogni tecnologia.</p>
+            <div class="popup-footer">
+                <button onclick="closePopup('popup6')" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded transition">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(popupId) {
+            document.getElementById(popupId).style.display = "flex";
+            document.getElementById(popupId).style.alignItems = "center";
+            document.getElementById(popupId).style.justifyContent = "center";
+            document.body.style.overflow = "hidden"; // Disabilita lo scroll della pagina
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = "none";
+            document.body.style.overflow = "auto"; // Riabilita lo scroll della pagina
+        }
+
+        // Chiudi il popup quando si clicca fuori dal contenuto
+        window.onclick = function(event) {
+            const popups = document.getElementsByClassName('popup');
+            for (let i = 0; i < popups.length; i++) {
+                if (event.target === popups[i]) {
+                    closePopup(popups[i].id);
+                }
+            }
+        }
+
+        // Chiudi il popup con il tasto ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                const popups = document.getElementsByClassName('popup');
+                for (let i = 0; i < popups.length; i++) {
+                    if (popups[i].style.display === "block") {
+                        closePopup(popups[i].id);
+                    }
+                }
+            }
+        });
+    </script>
+
+<!-- FAQ Section -->
+<section class="max-w-4xl mx-auto px-6 mb-20 fade-in">
+  <h2 class="text-3xl font-bold text-teal-700 mb-8 text-center">Domande Frequenti</h2>
+
+  <div class="space-y-4">
+    <!-- FAQ Item -->
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Cosa si intende per GPL?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Il GPL (Gas di Petrolio Liquefatto) è una miscela di idrocarburi utilizzata come combustibile per riscaldamento, cottura e autotrazione.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Cosa si intende per GNL?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Il GNL (Gas Naturale Liquefatto) è metano raffreddato a -162°C per essere trasportato in forma liquida, utile per grandi consumi industriali.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Posso usare il GPL per la mia azienda?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Sì, il GPL è adatto per aziende che necessitano di energia per riscaldamento, processi produttivi e cucine industriali.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Posso usare il GNL per la mia azienda?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Sì, il GNL è indicato per aziende con elevati consumi energetici, soprattutto in aree non raggiunte dalla rete del metano.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Quali sono le principali tipologie di serbatoi?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Esistono serbatoi interrati e fuori terra, con diverse capacità, installabili in base allo spazio disponibile e al fabbisogno.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Come avviene la consegna del gas per i clienti litro?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Il gas viene consegnato direttamente nel serbatoio tramite autobotte, e la fatturazione avviene sulla base dei litri effettivamente forniti.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Come avviene la consegna del gas per i clienti a contatore?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        Il gas viene immagazzinato in un serbatoio comune e il consumo è monitorato da un contatore individuale, con fatturazione mensile o bimestrale.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Quali sono le agevolazioni fiscali per GPL e GNL?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        In alcune zone non metanizzate sono previste riduzioni o esenzioni sulle accise per l’utilizzo di GPL o GNL, a seconda della destinazione d’uso.
+      </div>
+    </div>
+
+    <div class="border border-gray-200 rounded-lg overflow-hidden">
+      <button class="w-full text-left px-6 py-4 bg-white hover:bg-teal-50 font-semibold text-gray-800 flex justify-between items-center faq-toggle">
+        Che cos’è la defiscalizzazione?
+        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+      <div class="px-6 py-4 text-gray-600 hidden">
+        È l’applicazione di un’aliquota ridotta di accisa o l’esenzione totale, prevista per particolari aree o usi del GPL/GNL (es. uso agricolo o zone montane).
+      </div>
+    </div>
+  </div>
+</section>
+
+
+ <!-- Footer -->
+  <footer class="footer py-16">
+    <div class="container mx-auto px-12">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-16 md:mb-0">
+          <div class="flex items-center mb-4">
+            <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+            <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+          </div>
+
+          <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+            <ul class="footer-links space-y-2">
+              <li><a href="index.html" class="text-white-700 hover:text-teal-700 transition">Home</a></li>
+              <li><a href="servizi.html" class="text-white-700 hover:text-teal-700 transition">Servizi</a></li>
+              <li><a href="chisiamo.html" class="text-white-700 hover:text-teal-700 transition">Chi Siamo</a></li>
+              <li><a href="aziende.html" class="text-white-700 hover:text-teal-700 transition">Per Le Aziende</a></li>
+              <li><a href="WebBlog.html" class="text-white-700 hover:text-teal-700 transition">Blog</a></li>
+              <li><a href="contatti.html" class="text-white-700 hover:text-teal-700 transition">Contatti</a></li>
+                                  <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+            </ul>
+          </div>
+
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+
+          <div>
+            <h4 class="text-white font-bold mb-4">Social</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-800 transition"><i class="fab fa-facebook-f"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Me.Gi Agenzia. Tutti i diritti riservati.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Termini e Condizioni</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  document.querySelectorAll(".faq-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector("i");
+
+      content.classList.toggle("hidden");
+      icon.classList.toggle("rotate-180");
+    });
+  });
+</script>
+
+</body>
+</html>

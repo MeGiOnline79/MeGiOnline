@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi Siamo - Me.Gi Agenzia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .delay-1 { animation-delay: 0.3s; }
+    .delay-2 { animation-delay: 0.6s; }
+
+    .footer {
+      background-color: #234e52;
+      color: #d1fae5;
+    }
+
+    .footer-links a:hover {
+      color: #68d391;
+    }
+
+    header {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .header-hidden {
+      transform: translateY(-100%);
+      box-shadow: none !important;
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.querySelector("header");
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function onScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          header.classList.add("header-hidden");
+        } else {
+          header.classList.remove("header-hidden");
+        }
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+
+  <!-- Header fisso -->
+  <header class="fixed top-0 w-full bg-white shadow z-50">
+    <div class="container mx-auto px-6 py-2 flex flex-col items-center">
+      <div class="mb-2">
+        <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full object-cover mx-auto" />
+      </div>
+      <nav class="flex space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Home</a>
+        <a href="chisiamo.html" class="text-teal-700 font-medium hover:text-green-400 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-gray-700 hover:text-teal-700 transition">Servizi</a>
+        <a href="Aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-gray-700 hover:text-teal-700 transition">Blog</a>
+        <a href="contatti.html" class="text-gray-700 hover:text-teal-700 transition">Contatti</a>
+        <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spazio per compensare header fisso -->
+  <div class="h-28"></div>
+
+  <!-- Sezione Chi Siamo -->
+  <section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-4xl font-bold text-teal-700 mb-4">Chi Siamo?</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Me.Gi Agenzia è una realtà dinamica specializzata nella consulenza strategica, rappresentanza commerciale e supporto tecnico nei settori energetico e digitale.
+          La nostra missione è accompagnare le aziende nella crescita, offrendo soluzioni su misura e un servizio altamente personalizzato.      <br>
+          Me.Gi l'esperienza che fa la differenza
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 fade-in delay-1">
+        <div>
+          <img src="img/logoMeGi.png" alt="logo" class="rounded-lg shadow-md w-full" />
+        </div>
+        <div class="flex flex-col justify-center">
+          <h3 class="text-2xl font-bold text-teal-700 mb-4">La Nostra Storia:</h3>
+          <p class="text-gray-700 mb-4">
+Me.Gi è un’agenzia commerciale con un’anima fatta di esperienza, passione e professionalità.<br>
+Nasciamo da oltre 25 anni di esperienza maturata nel settore delle Industrie di lavaggio ,  un percorso costruito giorno dopo giorno a stretto contatto con realtà produttive, operatori e impianti di ogni dimensione.<br> 
+Questa lunga esperienza ci ha insegnato non solo le dinamiche tecniche del settore, ma anche l’importanza dell’affidabilità, della tempestività e del rapporto umano nel lavoro quotidiano.<br>
+Oggi mettiamo questa competenza al servizio della nostra attività come agenzia rappresentante Liquigas, azienda leader nella fornitura di GPL e GNL in Italia. <br>
+Collaborare con un partner solido come Liquigas ci consente di offrire soluzioni energetiche su misura, efficienti e sostenibili, pensate in particolare per le esigenze delle attività produttive.<br>
+Me.Gi è il ponte tra le esigenze dei clienti e le soluzioni energetiche più adatte. <br>
+Non siamo semplici intermediari: 
+ci consideriamo consulenti attivi, capaci di ascoltare, consigliare e accompagnare ogni cliente nel tempo, garantendo un supporto costante e una presenza concreta.<br>
+La nostra forza:
+Conoscenza profonda del settore Industriale.<br>
+Partnership con Liquigas, garanzia di qualità e affidabilità.<br>
+Servizio personalizzato e assistenza dedicata.<br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-8 md:mb-0">
+<div class="flex items-center mb-4">
+  <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+  <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+</div>
+
+          <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+            <ul class="footer-links space-y-2">
+        <li><a href="index.html" class="text-white-700 hover:text-teal-700 transition">Home</a></li>
+        <li><a href="servizi.html" class="text-white-700 hover:text-teal-700 transition">Servizi</a></li>
+        <li><a href="chisiamo.html" class="text-white-700 hover:text-teal-700 transition">Chi Siamo</a></li>
+        <li><a href="aziende.html" class="text-white-700 hover:text-teal-700 transition">Per Le Aziende</a></li>
+        <li><a href="WebBlog.html" class="text-white-700 hover:text-teal-700 transition">Blog</a></li>
+        <li><a href="contatti.html" class="text-white-700 hover:text-teal-700 transition">Contatti</a></li>
+            </ul>
+          </div>
+
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+          <div>
+            <h4 class="text-white font-bold mb-4">Social</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-800 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Me.Gi Agenzia. Tutti i diritti riservati.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Termini e Condizioni</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

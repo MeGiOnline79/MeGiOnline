@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Me.Gi Agenzia - Consulenza Professionale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Animazioni personalizzate */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+
+        /* Gradiente personalizzato */
+        .hero-gradient {
+            background: linear-gradient(135deg, #2c7a7b 0%, #38b2ac 50%, #68d391 100%);
+        }
+
+        /* Stili per le card dei servizi */
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #38b2ac;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(56, 178, 172, 0.3);
+            border-left: 4px solid #68d391;
+        }
+
+        /* Stile per il pulsante CTA */
+        .cta-button {
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, #38b2ac, #68d391);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.4);
+        }
+
+        /* Stile per il footer */
+        .footer {
+            background-color: #234e52;
+            color: #d1fae5;
+        }
+
+        .footer-links a:hover {
+            color: #68d391;
+        }
+
+        /* Transizioni e stato header per scroll */
+        header {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Classe per nascondere header */
+        .header-hidden {
+            transform: translateY(-100%);
+            box-shadow: none !important;
+        }
+    </style>
+
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        const header = document.querySelector("header");
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function onScroll() {
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Scroll down - nascondi header
+            header.classList.add("header-hidden");
+          } else {
+            // Scroll up - mostra header
+            header.classList.remove("header-hidden");
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        }
+
+        window.addEventListener("scroll", () => {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        });
+      });
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+    <!-- Header/Navbar -->
+<header class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-6 py-2 flex flex-col items-center">
+        <!-- Logo centrato in alto -->
+        <div class="mb-4">
+            <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full object-cover mx-auto" />
+        </div>
+        <!-- Menu di navigazione centrato sotto il logo -->
+        <nav class="flex space-x-8">
+        <a href="index.html" class="text-teal-700 font-medium hover:text-green-400 transition">Home</a>
+        <a href="chisiamo.html" class="text-gray-700 hover:text-teal-700 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-gray-700 hover:text-teal-700 transition">Servizi</a>
+        <a href="Aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-gray-700 hover:text-teal-700 transition">Blog</a>
+        <a href="contatti.html" class="text-gray-700 hover:text-teal-700 transition">Contatti</a>
+                    <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+        </nav>
+        <button class="md:hidden focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+    <section id="home"
+        class="relative hero-gradient text-white pt-44 pb-20 bg-cover bg-center"
+        style="background-image: url('img/bgPrinci.jpg');">
+
+        <!-- Overlay chiaro -->
+        <div class="absolute inset-0 bg-white opacity-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div
+                    class="md:w-1/2 mb-10 md:mb-0 fade-in bg-black bg-opacity-40 p-6 rounded-lg">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 text-teal-100">
+                        Consulenza Energetica GPL/GNL <span class="text-teal-300">strategica</span> per il tuo business
+                    </h1>
+                    <p class="text-xl mb-8 text-teal-200">
+                        Me.Gi Agenzia offre soluzioni personalizzate per aiutare la tua azienda a crescere e prosperare in un mercato competitivo.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contatti"
+                            class="cta-button px-8 py-3 rounded-full text-white font-semibold bg-teal-600 hover:bg-teal-700 transition">
+                            Contattaci
+                        </a>
+                        <a href="#servizi"
+                            class="px-8 py-3 rounded-full bg-white text-teal-700 font-semibold hover:bg-gray-100 transition">
+                            Scopri di più
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Servizi Section -->
+<section id="servizi" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-3xl font-bold text-teal-700 mb-4">I Nostri Servizi</h2>
+      <p class="text-xl text-gray-700 max-w-2xl mx-auto">
+        Offriamo per il mercato energetico una gamma completa di servizi di consulenza personalizzati per soddisfare ogni esigenza della tua azienda.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
+      <!-- Servizio 1 -->
+      <div class="service-card bg-white p-8 rounded-lg fade-in delay-1">
+        <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-chart-line text-teal-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-teal-700">Strategia Aziendale</h3>
+        <p class="text-gray-700 mb-4">
+          Analisi del mercato energetico e sviluppo di strategie personalizzate per la crescita del tuo business.
+        </p>
+        <a href="servizi.html" class="text-teal-700 font-medium hover:text-green-400 transition">Scopri di più →</a>
+      </div>
+
+      <!-- Servizio 2 -->
+      <div class="service-card bg-white p-8 rounded-lg fade-in delay-2">
+        <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6">
+          <i class="fas fa-handshake text-green-600 text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-4 text-teal-700">Rappresentanza Commerciale</h3>
+        <p class="text-gray-700 mb-4">
+          Me.Gi un'azienda che rappresenta sul territorio nazionale Liquigas primo operatore energetico GPL/GNL in Italia.
+        </p>
+        <a href="servizi.html" class="text-teal-700 font-medium hover:text-green-400 transition">Scopri di più →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Benvenuto Section -->
+    <section id="benvenuto" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-teal-700 mb-4">Benvenuto!</h2>
+                <p class="text-xl text-gray-700 max-w-2xl mx-auto">Benvenuto in ME.GI, Siamo un'agenzia che opera nel settore dell'energia, in particolare come rappresentanti ufficiali per Liquigas primo operatore energetico GPL/GNL in Italia. <br>Affidabilità, presenza sul territorio e attenzione al cliente sono la nostra forza CTA (Call to Action) <br> Contattaci per scoprire come possiamo collaborare.</p>
+                <br>
+                <a href="#contatti">
+                    <button type="button" class="cta-button px-6 py-3 rounded-lg text-white font-semibold">
+                        contattaci subito
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                <img src="img/ufficio.jpg" alt="Team" class="rounded-lg shadow-xl">
+            </div>
+            <div class="md:w-1/2 md:pl-12 fade-in delay-1">
+                <h2 class="text-3xl font-bold text-blue-800 mb-6">Chi Siamo</h2>
+                <p class="text-gray-600 mb-6 text-lg">ME.GI Agenzia è una realtà professionale nata con l’obiettivo di offrire servizi di rappresentanza commerciale altamente qualificati nel settore dell’energia. <br>La nostra attività si fonda su competenza, affidabilità e un forte orientamento al cliente, valori che guidano ogni aspetto del nostro operato.
+
+<br>Collaboriamo stabilmente con LIQUIGAS, uno dei principali operatori del mercato energetico italiano, consolidando una partnership basata su fiducia reciproca e obiettivi condivisi. <br>Grazie a questa sinergia, siamo in grado di garantire una copertura capillare del territorio, offrendo un’assistenza completa sia dal punto di vista commerciale che tecnico.
+
+<br>Il nostro impegno quotidiano è rivolto a costruire relazioni durature, offrendo un servizio personalizzato, rapido e puntuale, con particolare attenzione alle esigenze del cliente finale.<br> ME.GI Agenzia si propone come interlocutore affidabile tra l’azienda fornitrice e l’utente finale, assicurando qualità, trasparenza e supporto costante in ogni fase del processo.</p>
+                
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-check text-blue-600"></i>
+                    </div>
+                   <br> <a href="chisiamo.html" class="text-teal-700 font-medium hover:text-green-400 transition">Scopri di più su Me.Gi→</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contatti Section -->
+    <section id="contatti" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-blue-800 mb-4">Contattaci</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Siamo qui per aiutarti. Compila il form o contattaci direttamente.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8 fade-in">
+                    <form class="bg-white p-8 rounded-lg shadow-md">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nome</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Messaggio</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <a href="contatti.html" class="cta-button w-full py-3 rounded-lg text-white font-semibold text-center block">
+                        Invia Messaggio
+                        </a>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-8 fade-in delay-1">
+                    <div class="bg-white p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-bold text-blue-800 mb-6">Informazioni di Contatto</h3>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-gray-700 mb-2">Telefono</h4>
+                            <p class="text-gray-600"><strong>Ufficio Commerciale:</strong><br>+39 339 3876 874<br><strong>Ufficio Contabile:</strong><br>+39 376 142 0401</p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-gray-700 mb-2">Email</h4>
+                            <p class="text-gray-600">Megi.mrz@gmail.com</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-gray-700 mb-2">Orari di Lavoro</h4>
+                            <p class="text-gray-600">Lunedì - Venerdì: 9:00 - 13:00 / 14:00 - 17:00<br>Sabato - Domenica: Chiuso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+<div class="flex items-center mb-4">
+  <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+  <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+</div>
+
+                    <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+                        <ul class="footer-links space-y-2">
+        <li><a href="index.html" class="text-white-700 hover:text-teal-700 transition">Home</a></li>
+        <li><a href="servizi.html" class="text-white-700 hover:text-teal-700 transition">Servizi</a></li>
+        <li><a href="chisiamo.html" class="text-white-700 hover:text-teal-700 transition">Chi Siamo</a></li>
+        <li><a href="aziende.html" class="text-white-700 hover:text-teal-700 transition">Per Le Aziende</a></li>
+        <li><a href="WebBlog.html" class="text-white-700 hover:text-teal-700 transition">Blog</a></li>
+        <li><a href="contatti.html" class="text-white-700 hover:text-teal-700 transition">Contatti</a></li>
+                        </ul>
+                    </div>
+                    
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+                    
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Social</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-800 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Me.Gi Agenzia. Tutti i diritti riservati.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Termini e Condizioni</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Includi il tuo main.js per l'animazione -->
+    <script src="js/main.js"></script>
+    
+    <!-- Script per animazioni e funzionalità -->
+    <script>
+        // Animazione dello scroll per i link del menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mostra elementi quando entrano nella viewport
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeInObserver.observe(el);
+        });
+        
+        // Menu mobile (semplice toggle)
+        const mobileMenuButton = document.querySelector('button[class="md:hidden focus:outline-none"]');
+        const mobileMenu = document.querySelector('nav[class="hidden md:flex space-x-8"]');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            mobileMenu.classList.toggle('flex-col');
+            mobileMenu.classList.toggle('absolute');
+            mobileMenu.classList.toggle('top-16');
+            mobileMenu.classList.toggle('left-0');
+            mobileMenu.classList.toggle('right-0');
+            mobileMenu.classList.toggle('bg-white');
+            mobileMenu.classList.toggle('p-4');
+            mobileMenu.classList.toggle('shadow-md');
+            mobileMenu.classList.toggle('space-y-4');
+            mobileMenu.classList.toggle('space-x-0');
+        });
+    </script>
+</body>
+</html>
+

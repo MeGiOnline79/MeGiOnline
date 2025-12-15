@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contatti - Me.Gi Agenzia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .delay-1 { animation-delay: 0.3s; }
+
+    .footer {
+      background-color: #234e52;
+      color: #d1fae5;
+    }
+
+    .footer-links a:hover {
+      color: #68d391;
+    }
+
+    header {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .header-hidden {
+      transform: translateY(-100%);
+      box-shadow: none !important;
+    }
+  </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.querySelector("header");
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function onScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          header.classList.add("header-hidden");
+        } else {
+          header.classList.remove("header-hidden");
+        }
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+
+  <!-- Header fisso -->
+  <header class="fixed top-0 w-full bg-white shadow z-50">
+    <div class="container mx-auto px-6 py-2 flex flex-col items-center">
+      <div class="mb-2">
+        <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full object-cover mx-auto" />
+      </div>
+      <nav class="flex space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Home</a>
+        <a href="chisiamo.html" class="text-gray-700 hover:text-teal-700 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-gray-700 hover:text-teal-700 transition">Servizi</a>
+        <a href="Aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-gray-700 hover:text-teal-700 transition">Blog</a>
+        <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contatti</a>
+        <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Spazio per compensare header -->
+  <div class="h-28"></div>
+
+  <!-- Sezione Contatti -->
+  <section id="contatti" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12 fade-in">
+        <h2 class="text-4xl font-bold text-teal-700 mb-4">Contattaci</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Hai bisogno di informazioni o vuoi una consulenza gratuita? Compila il modulo o contattaci direttamente. Siamo felici di aiutarti.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 fade-in delay-1">
+        <!-- Info contatto -->
+        <div>
+          <h3 class="text-2xl font-bold text-teal-700 mb-6">I nostri contatti</h3>
+          <ul class="space-y-4 text-gray-700">
+        <li><i class="fas fa-phone text-teal-600 mr-2"></i><strong>Ufficio Commerciale:</strong><br>+39 339 3876 874<br><i class="fas fa-phone text-teal-600 mr-2"></i><strong>Ufficio Contabile:</strong><br>+39 376 142 0401</li>
+            <li><i class="fas fa-envelope text-teal-600 mr-2"></i> Megi.mrz@gmail.com</li>
+          </ul>
+
+          <div class="mt-8">
+            <h4 class="text-lg font-semibold mb-2 text-gray-800">Seguici sui social:</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-teal-600 hover:text-teal-800"><i class="fab fa-facebook fa-2x"></i></a>
+              <a href="#" class="text-teal-600 hover:text-teal-800"><i class="fab fa-linkedin fa-2x"></i></a>
+              <a href="#" class="text-teal-600 hover:text-teal-800"><i class="fab fa-twitter fa-2x"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modulo contatto -->
+        <form class="bg-gray-100 p-8 rounded-lg shadow-md space-y-6" id="contatti-form">
+          <div>
+            <label for="nome" class="block text-sm font-medium text-gray-700">Nome</label>
+            <input type="text" id="nome" name="nome" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500" />
+          </div>
+
+          <!-- Messaggio -->
+          <div>
+            <label for="messaggio" class="block text-sm font-medium text-gray-700">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" rows="4" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"></textarea>
+          </div>
+
+          <!-- Pulsante invio -->
+          <button type="submit" class="w-full bg-teal-600 text-white py-2 px-4 rounded hover:bg-teal-700 transition">Invia messaggio</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+<script>
+  const tipo1 = document.getElementById('tipo1');
+  const tipo2 = document.getElementById('tipo2');
+  const aziendaField = document.getElementById('azienda-field');
+  const webOptions = document.getElementById('web-options');
+
+  function aggiornaCampi() {
+    if (tipo1.checked) {
+      aziendaField.classList.remove('hidden');
+    } else {
+      aziendaField.classList.add('hidden');
+    }
+
+    if (tipo2.checked) {
+      webOptions.classList.remove('hidden');
+    } else {
+      webOptions.classList.add('hidden');
+    }
+  }
+
+  tipo1.addEventListener('change', aggiornaCampi);
+  tipo2.addEventListener('change', aggiornaCampi);
+
+  // Avvio iniziale per mostrare i campi giusti
+  document.addEventListener('DOMContentLoaded', aggiornaCampi);
+</script>
+
+  <!-- Footer -->
+  <footer class="footer py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-8 md:mb-0">
+          <div class="flex items-center mb-4">
+            <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+            <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+          </div>
+
+          <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+            <ul class="footer-links space-y-2">
+              <li><a href="index.html" class="text-white-700 hover:text-teal-700 transition">Home</a></li>
+              <li><a href="servizi.html" class="text-white-700 hover:text-teal-700 transition">Servizi</a></li>
+              <li><a href="chisiamo.html" class="text-white-700 hover:text-teal-700 transition">Chi Siamo</a></li>
+              <li><a href="aziende.html" class="text-white-700 hover:text-teal-700 transition">Per Le Aziende</a></li>
+              <li><a href="WebBlog.html" class="text-white-700 hover:text-teal-700 transition">Blog</a></li>
+              <li><a href="contatti.html" class="text-white-700 hover:text-teal-700 transition">Contatti</a></li>
+                                  <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+            </ul>
+          </div>
+
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+
+          <div>
+            <h4 class="text-white font-bold mb-4">Social</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-10 h-10

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Me.Gi Agenzia - Web Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .footer { background-color: #234e52; color: #d1fae5; }
+    .footer-links a:hover { color: #68d391; }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    .header-hidden { transform: translateY(-100%); }
+  </style>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const header = document.querySelector("header");
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function onScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          header.classList.add("header-hidden");
+        } else {
+          header.classList.remove("header-hidden");
+        }
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      });
+
+      // FAQ toggle
+      document.querySelectorAll(".faq-toggle").forEach(button => {
+        button.addEventListener("click", () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector("i");
+          content.classList.toggle("hidden");
+          icon.classList.toggle("rotate-180");
+        });
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-gray-50 font-sans text-gray-900">
+  <!-- Header -->
+  <header>
+    <div class="container mx-auto px-6 py-4 flex flex-col items-center">
+      <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-20 h-20 rounded-full mb-2" />
+      <nav class="flex space-x-8 text-sm md:text-base">
+        <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Home</a>
+        <a href="chisiamo.html" class="text-gray-700 hover:text-teal-700 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-gray-700 hover:text-teal-700 transition">Servizi</a>
+        <a href="aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-gray-700 hover:text-teal-700 transition">Blog</a>
+        <a href="contatti.html" class="text-gray-700 hover:text-teal-700 transition">Contatti</a>
+        <a href="lcn.html" class="text-teal-700 font-medium hover:text-green-400 transition">Lavora con noi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-teal-600 text-white py-24 text-center fade-in mt-20">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold mb-4">Unisciti al nostro team</h1>
+      <p class="text-lg max-w-2xl mx-auto">
+        Siamo sempre alla ricerca di talenti motivati pronti a portare energia positiva nel nostro team.
+      </p>
+    </div>
+  </section>
+
+<!-- Sezione Lavora con Noi -->
+<section id="lavora-con-noi" class="py-20 bg-white">
+  <div class="container mx-auto px-6 fade-in">
+    <h2 class="text-3xl font-bold text-teal-700 text-center mb-6">Lavora con Noi</h2>
+    
+    <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
+      Unisciti a <strong>Me.Gi</strong> e costruisci il tuo futuro nel settore energetico.<br />
+      Siamo in continua crescita e cerchiamo persone dinamiche, motivate e orientate ai risultati per ampliare la nostra rete.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mb-12">
+      <!-- Box Cerchiamo -->
+      <div class="bg-gray-100 p-8 rounded-xl shadow-md hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold text-teal-700 mb-4 flex items-center"><i class="fas fa-user-tie mr-2"></i>Cerchiamo</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+          <li>Agenti con esperienza nel settore industriale</li>
+          <li>Giovani talenti, anche senza esperienza, persone autonome e proattive, capacità di instaurare relazioni di fiducia con le aziende</li>
+        </ul>
+      </div>
+
+      <!-- Box Offriamo -->
+      <div class="bg-gray-100 p-8 rounded-xl shadow-md hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold text-teal-700 mb-4 flex items-center"><i class="fas fa-gift mr-2"></i>Offriamo</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+          <li>Formazione tecnica e commerciale continua</li>
+          <li>Affiancamento iniziale sul campo</li>
+          <li>Supporto marketing e materiale informativo</li>
+          <li>Portafoglio servizi legati a un marchio leader come <strong>Liquigas</strong></li>
+          <li>Opportunità reali di crescita professionale</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center max-w-3xl mx-auto mb-10 text-gray-800 text-md">
+      <p class="mb-4">
+        Che tu sia un professionista esperto o un giovane in cerca di un’opportunità concreta, con Me.Gi troverai un ambiente stimolante e affidabile.
+      </p>
+      <p>
+        Vuoi entrare a far parte del mondo Me.Gi?<br />
+        Invia il tuo CV a <a href="mailto:megi.mrz@gmail.com" class="text-teal-600 hover:underline">megi.mrz@gmail.com</a> <br />
+        <strong>Cresci con noi. Porta energia al tuo futuro.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-8 md:mb-0">
+          <div class="flex items-center mb-4">
+            <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+            <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+          </div>
+          <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+            <ul class="footer-links space-y-2">
+              <li><a href="index.html" class="text-white hover:text-teal-400 transition">Home</a></li>
+              <li><a href="servizi.html" class="text-white hover:text-teal-400 transition">Servizi</a></li>
+              <li><a href="chisiamo.html" class="text-white hover:text-teal-400 transition">Chi Siamo</a></li>
+              <li><a href="aziende.html" class="text-white hover:text-teal-400 transition">Per Le Aziende</a></li>
+              <li><a href="WebBlog.html" class="text-white hover:text-teal-400 transition">Blog</a></li>
+              <li><a href="contatti.html" class="text-white hover:text-teal-400 transition">Contatti</a></li>
+            </ul>
+          </div>
+
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+
+          <div>
+            <h4 class="text-white font-bold mb-4">Social</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-800 transition" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Me.Gi Agenzia. Tutti i diritti riservati.</p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Termini e Condizioni</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

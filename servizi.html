@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Me.Gi Agenzia - Servizi Dettagliati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        /* Mantengo gli stessi stili del tuo sito */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #38b2ac;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(56, 178, 172, 0.3);
+            border-left: 4px solid #68d391;
+        }
+
+        .cta-button {
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, #38b2ac, #68d391);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(56, 178, 172, 0.4);
+        }
+
+        .footer {
+            background-color: #234e52;
+            color: #d1fae5;
+        }
+
+        .footer-links a:hover {
+            color: #68d391;
+        }
+
+        header {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-hidden {
+            transform: translateY(-100%);
+            box-shadow: none !important;
+        }
+    </style>
+
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        const header = document.querySelector("header");
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+
+        function onScroll() {
+          const currentScrollY = window.scrollY;
+
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            header.classList.add("header-hidden");
+          } else {
+            header.classList.remove("header-hidden");
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        }
+
+        window.addEventListener("scroll", () => {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        });
+      });
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+    <!-- Header/Navbar -->
+        <div class="container mx-auto px-6 py-2 flex flex-col items-center">
+            <div class="mb-2">
+                <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full object-cover mx-auto" />
+            </div>
+      <nav class="flex space-x-8 text-sm md:text-base">
+        <a href="index.html" class="text-gray-700 hover:text-teal-700 transition">Home</a>
+        <a href="chisiamo.html" class="text-gray-700 hover:text-teal-700 transition">Chi Siamo</a>
+        <a href="servizi.html" class="text-teal-700 font-medium hover:text-green-500 transition">Servizi</a>
+        <a href="Aziende.html" class="text-gray-700 hover:text-teal-700 transition">Per Le Aziende</a>
+        <a href="WebBlog.html" class="text-gray-700 hover:text-teal-700 transition">Blog</a>
+        <a href="contatti.html" class="text-gray-700 hover:text-teal-700 transition">Contatti</a>
+                    <a href="Lcn.html" class="text-gray-700 hover:text-teal-700 transition">Lavora con noi</a>
+      </nav>
+            <button class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Nuova sezione Servizi dettagliata -->
+    <section id="servizi" class="py-20 bg-gray-100 mt-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-teal-700 mb-4">I Nostri Servizi Dettagliati</h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto">Scopri la nostra offerta completa di servizi pensati per potenziare la tua azienda nel settore energetico e non solo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="service-card bg-white p-8 rounded-lg fade-in delay-1">
+                    <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Analisi Energetica Avanzata</h3>
+                    <p class="text-gray-700 mb-4">Valutiamo in dettaglio i consumi energetici per identificare soluzioni di ottimizzazione e risparmio.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg fade-in delay-2">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Supporto Tecnico Personalizzato</h3>
+                    <p class="text-gray-700 mb-4">Assistenza continua e personalizzata per garantire la massima efficienza delle infrastrutture energetiche.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+                 <div class="service-card bg-white p-8 rounded-lg fade-in delay-3">
+                    <div class="w-14 h-14 bg-green-200 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Rappresentanza Commerciale GPL e GNL</h3>
+                    <p class="text-gray-700 mb-4">Promozione e vendita continua di GPL e GNL per le aziende. Partnership solida con Liquigas.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg fade-in delay-3">
+                    <div class="w-14 h-14 bg-green-200 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Consulenza Tecnica ed Energetica</h3>
+                    <p class="text-gray-700 mb-4">Analisi personalizzata per ridurre i costi, aumentare l'efficienza e monitorare i consumi con strumenti di telemetria.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+
+                <div class="service-card bg-white p-8 rounded-lg fade-in delay-3">
+                    <div class="w-14 h-14 bg-green-200 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Progettazione e Installazione “Chiavi in Mano”</h3>
+                    <p class="text-gray-700 mb-4">Dal rilievo tecnico alla messa in esercizio di impianti GPL/GNL, incluso collaudo e manutenzione post-installazione.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+                <div class="service-card bg-white p-8 rounded-lg fade-in delay-3">
+                    <div class="w-14 h-14 bg-green-200 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">Soluzioni per la sostenibilità</h3>
+                    <p class="text-gray-700 mb-4">Liquigas, nostro partner energetico collabora con reltà come Grana Padano e Coldiretti per promuovere soluzioni volte alla riduzione delle emissioni e al miglioramento dell'efficenza ambientale nei processi produttivi.<br>L'obiettivo è integrare fonti energetiche piu sostenibili e ottimizzare l'impatto ambentale lungo tutta la filiera</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+
+                 <div class="service-card bg-white p-8 rounded-lg fade-in delay-3">
+                    <div class="w-14 h-14 bg-green-200 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-green-700 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-teal-700">🌱 Biocarburanti e BioGPL<br>
+                        Il Tuo Viaggio Verso Un Domani Più Verde:</h3>
+                    <p class="text-gray-700 mb-4">Ogni pieno può essere un passo verso un mondo migliore.<br>Con i nostri biocarburanti e BioGPL, contribuisci a un'aria più pulita e a un pianeta più sano, senza rinunciare alle prestazioni.<br> 
+Per chi crede che la vera energia venga da una scelta consapevole.</p>
+                    <a href="contatti.html" class="text-teal-700 font-medium hover:text-green-400 transition">Contattaci Subito →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer identico -->
+    <footer class="footer py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+<div class="flex items-center mb-4">
+  <img src="img/logoMeGi.png" alt="Logo Me.Gi Agenzia" class="w-24 h-24 rounded-full" />
+  <h3 class="ml-3 text-xl font-bold text-white">Me.Gi Agenzia</h3>
+</div>
+                    <p class="text-gray-400 max-w-xs">Consulenza strategica e rappresentanza commerciale per il successo del tuo business.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Link Veloci</h4>
+                        <ul class="footer-links space-y-2">
+        <li><a href="index.html" class="text-white-700 hover:text-teal-700 transition">Home</a></li>
+        <li><a href="servizi.html" class="text-white-700 hover:text-teal-700 transition">Servizi</a></li>
+        <li><a href="chisiamo.html" class="text-white-700 hover:text-teal-700 transition">Chi Siamo</a></li>
+        <li><a href="aziende.html" class="text-white-700 hover:text-teal-700 transition">Per Le Aziende</a></li>
+        <li><a href="WebBlog.html" class="text-white-700 hover:text-teal-700 transition">Blog</a></li>
+        <li><a href="contatti.html" class="text-white-700 hover:text-teal-700 transition">Contatti</a></li>
+                        </ul>
+                    </div>
+                    
+    <div>
+      <h4 class="text-md font-semibold text-white mb-4">Servizi</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="servizi.html" class="hover:text-teal-400">Analisi Energetica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Consulenza Tecnica</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Progettazione Impianti</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">GPL / GNL Rappresentanza</a></li>
+        <li><a href="servizi.html" class="hover:text-teal-400">Sostenibilità & BioGPL</a></li>
+
+      </ul>
+    </div>
+
+                    
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Social</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-600 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-400 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-blue-800 transition">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Me.Gi Agenzia. Tutti i diritti riservati.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Termini e Condizioni</a>
+                </div>
+            </div>
+        </div>
+    </footer>
